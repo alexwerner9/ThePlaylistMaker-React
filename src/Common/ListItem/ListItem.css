@@ -1,0 +1,16 @@
+.list-item {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+    width: 100%;
+    transition: 0.2s;
+    margin-bottom: 1rem
+}
+
+.list-item:hover {
+    background-color: #1DB954;
+    color: black;
+    cursor: pointer;
+}

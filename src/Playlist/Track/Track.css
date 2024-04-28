@@ -1,0 +1,70 @@
+.track {
+    text-align: left;
+    background-color: rgb(30,30,30);
+    padding: 1rem;
+    border-bottom: 1px solid white;
+    align-items: left;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.5rem;
+    transition: 0.1s;
+    overflow-anchor: none !important;
+    white-space: nowrap;
+    height: 3rem;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 0.3;
+    }
+}
+
+.loading {
+    animation-duration: 0.75s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: ease-in-out;
+    opacity: 0.3;
+}
+
+.placeholder-name {
+    height: 1.1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    width: 30%;
+    background-color: #1DB954;
+    border-radius: 0.5rem;
+}
+
+.placeholder-added-by {
+    height: 0.9rem;
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+    width: 20%;
+    background-color: #1DB954;
+    border-radius: 0.5rem;
+}
+
+.track-info {
+    text-align: left;
+}
+
+.added-by {
+    margin-top: 0.3rem;
+    font-size: 1.2rem;
+}
+
+.track:hover {
+    background-color: rgb(25,25,25);
+    transform: translateX(0.5rem);
+    color: #26ee6c;
+    cursor: pointer;
+}

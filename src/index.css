@@ -1,0 +1,117 @@
+html {
+    font-size: 2vh;
+}
+html, body {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+}
+body {
+    background: linear-gradient(180deg, #191414, #302727);
+    background: -moz-linear-gradient(180deg, #191414, #302727);
+    font-family:  Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1DB954;
+    font-weight: 600;
+    text-align: center;
+}
+
+#main-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2%;
+    width: fit-content;
+    border-radius: 5%;
+    position: relative;
+    text-align: center;
+}
+
+input {
+    background-color: black;
+    border: 2px solid #1DB954;
+    border-radius: .25rem;
+    color: #1DB954;
+    box-sizing: content-box;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 20rem;
+    height: fit-content;
+    text-align: center;
+    padding: 0.5rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    margin-bottom: 2rem;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+    padding-bottom: 2%;
+}
+
+.columns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#home-button {
+    position: absolute;
+    z-index: 100;
+    left: 2rem;
+    top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    font-size: 1.3rem;
+    padding: 0.2rem;
+    background-color: rgb(180, 100, 100);
+    color: black;
+    margin-bottom: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    border: 3px solid rgb(80,0,0);
+    animation-name: error-animation;
+    animation-duration: 0.5s;
+    animation-iteration-count: 2;
+}
+
+@keyframes error-animation {
+    0% {background-color: rgb(180, 100, 100);}
+    50% {background-color: rgb(150, 70, 70);}
+    100% {background-color: rgb(180, 100, 100);}
+}
+
+*::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+}
+*::-webkit-scrollbar-track {
+    background-color: rgb(21, 21, 21);
+    border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #2dff77;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    height: 1.5rem;
+    background-clip: padding-box;
+}

@@ -1,0 +1,13 @@
+.lazy-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-width: 60vw;
+    max-height: 60vh;
+    min-width: 60vw;
+    min-height: 60vh;
+    overflow-anchor: none !important;
+}
+
+#lazy-scroll-bottom {
+    overflow-anchor: auto;
+}

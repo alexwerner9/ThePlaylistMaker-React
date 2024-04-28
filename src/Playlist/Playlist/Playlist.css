@@ -1,0 +1,12 @@
+li {
+    text-align: left;
+}
+
+#left-panel {
+    padding-right: 5rem;
+}
+
+#tracks-list {
+    padding-left: 2.5rem;
+    border-left: 1px solid white;
+}

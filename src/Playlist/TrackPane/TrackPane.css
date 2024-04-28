@@ -1,0 +1,29 @@
+#track-pane {
+    min-height: 60svh;
+    max-height: 60svh;
+    min-width: 60svw;
+    overflow: auto;
+    overflow-x: hidden;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(30,30,30);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 16px 16px;
+}
+ol {
+    padding: 0;
+    margin: 0;
+}
+
+#no-tracks {
+    min-height: 60svh;
+    min-width: 60svw;
+    border-left: 1px solid white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60svh;
+    background-color: rgb(30,30,30);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 16px 16px;
+    border-top: 1px solid white;
+}
