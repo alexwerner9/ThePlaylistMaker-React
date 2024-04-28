@@ -1,1 +1,0 @@
-This is the front-end to my playlist maker. Backend repo is [here](https://github.com/nyu-csci-ua-0467-001-002-fall-2023/final-project-alexwerner9)
