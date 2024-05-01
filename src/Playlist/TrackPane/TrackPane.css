@@ -1,6 +1,6 @@
 #track-pane {
-    min-height: 60svh;
-    max-height: 60svh;
+    min-height: 67svh;
+    max-height: 67svh;
     min-width: 60svw;
     overflow: auto;
     overflow-x: hidden;
@@ -26,4 +26,12 @@ ol {
     background-color: rgb(30,30,30);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 16px 16px;
     border-top: 1px solid white;
+}
+
+@media (orientation: portrait) {
+    #track-pane {
+        min-width: 75vw;
+        border-left: none;
+        border-bottom: 1px solid white;
+    }
 }

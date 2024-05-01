@@ -1,13 +1,18 @@
 .lazy-scroll {
     overflow-y: auto;
     overflow-x: hidden;
+    height: 100%;
     max-width: 60vw;
-    max-height: 60vh;
     min-width: 60vw;
-    min-height: 60vh;
     overflow-anchor: none !important;
 }
 
 #lazy-scroll-bottom {
     overflow-anchor: auto;
+}
+
+@media (orientation: portrait) {
+    .lazy-scroll {
+        min-width: 75vw;
+    }
 }

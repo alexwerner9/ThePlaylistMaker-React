@@ -2,8 +2,9 @@
 import './Divider.css'
 
 function Divider(props) {
+    const { direction, ...rest } = props
     return (
-        <div className={"divider-"+props.direction}>
+        <div {...rest} className={"divider-"+direction}>
 
         </div>
     )

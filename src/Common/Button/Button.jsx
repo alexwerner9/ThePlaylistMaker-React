@@ -3,7 +3,7 @@ import './Button.css'
 function Button(props) {
     const { clickEvent, id, text, ...rest } = props
     return (
-        <button {...rest} onClick={clickEvent} id={id}>{text}</button>
+        <button {...rest} onClick={clickEvent} id={id} className="custom-button">{text}</button>
     )
 }
 

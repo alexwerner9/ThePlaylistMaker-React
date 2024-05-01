@@ -25,6 +25,7 @@ function LazyScroll(props) {
     })
 
     function scrollHandler(evt) {
+        console.log("SCROLL")
         const paneHeight = evt.target.clientHeight
         const testItem = evt.target.children[1]
         const itemHeightTmp = window.getComputedStyle(testItem)
@@ -49,7 +50,9 @@ function LazyScroll(props) {
 
         const sameData = (firstLoadedIndex == data.firstLoadedIndex && lastLoadedIndex == data.lastLoadedIndex)
         // if we're forcing an update, don't call the callback, but do update
-        if(sameData && !forceUpdate.current) return
+        if(sameData && !forceUpdate.current) {
+            return
+        }
         forceUpdate.current = false
         setData({
             loadedItems: items.slice(firstLoadedIndex, lastLoadedIndex+1),
@@ -69,7 +72,7 @@ function LazyScroll(props) {
         clearTimeout(finishedScrolling.current)
         finishedScrolling.current = setTimeout(() => {
             if(!sameData) props.onLazyScroll(firstLoadedIndex, lastLoadedIndex)
-        }, 100)
+        }, 200)
     }
 
     useEffect(() => {
@@ -82,7 +85,6 @@ function LazyScroll(props) {
     }, [items])
 
     useEffect(() => {
-        console.log("RERENDEr")
     })
 
     return (

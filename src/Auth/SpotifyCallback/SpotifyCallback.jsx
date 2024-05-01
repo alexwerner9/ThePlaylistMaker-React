@@ -6,23 +6,27 @@ function SpotifyCallback(props) {
     const navigate = useNavigate();
     useEffect(() => {
         async function registerSpotify(code) {
-            console.log("CALLING")
-            const res = await fetch('http://localhost:3000/registerspotify?code='+code)
+            const res = await fetch(import.meta.env.VITE_API_URL+'/registerspotify?code='+code, {credentials: 'include'})
             const resJson = await res.json()
-            console.log(resJson)
             if(resJson.userId) {
                 localStorage.setItem('loginToken', resJson.loginToken)
                 localStorage.setItem('username', resJson.userId)
                 localStorage.setItem('isSpotifyUser', 'true')
             }
-            navigate('/')
+            const loginRedirectHref = localStorage.getItem('loginRedirectHref')
+            localStorage.removeItem('loginRedirectHref')
+            if(loginRedirectHref) {
+                window.location.href = loginRedirectHref
+            } else {
+                window.location.href = "/"
+            }
         }
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code')
         registerSpotify(code)
     }, [])
 
-    return <p>Loading...</p>
+    return <></>
 }
 
 export default SpotifyCallback

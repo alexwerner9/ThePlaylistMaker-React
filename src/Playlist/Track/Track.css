@@ -11,7 +11,7 @@
     transition: 0.1s;
     overflow-anchor: none !important;
     white-space: nowrap;
-    height: 3rem;
+    height: 3.5rem;
 }
 
 @keyframes placeHolderShimmer{
@@ -55,6 +55,9 @@
 
 .track-info {
     text-align: left;
+    max-width: 75%;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .added-by {

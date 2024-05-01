@@ -10,3 +10,25 @@ li {
     padding-left: 2.5rem;
     border-left: 1px solid white;
 }
+
+@keyframes blinkAddSong {
+    0% {
+        background-color: #191414;
+        color: #1DB954;
+    }
+    50% {
+        background-color: #1DB954;
+        color: #191414;
+    }
+    100% {
+        background-color: #191414;
+        color: #1DB954;
+    }
+}
+
+#add-song {
+    animation-name: blinkAddSong;
+    animation-duration: 0.5s;
+    animation-iteration-count: 2;
+    animation-delay: 3s;
+}

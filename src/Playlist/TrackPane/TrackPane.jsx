@@ -8,11 +8,11 @@ function TrackPane(props) {
     const playlist = props.playlist
     const numTracks = playlist.numTracks
     if(!numTracks || !props.tracks.length) {
-        return <div id="no-tracks">Tracks will appear here.</div>
+        return <div id="track-pane" className="rows" style={props.style}>Tracks will appear here.</div>
     }
     if(props.playlistType == 'tpm') {
         return (
-            <div id="track-pane">
+            <div id="track-pane" style={props.style}>
                 <ol>
                     {props.tracks.map((elem, index) => {
                             return <li key={elem.spotifyUrl}>
@@ -33,7 +33,7 @@ function TrackPane(props) {
     // initialize placeholders
     const tmpTracks = []
     for(let i = 0; i < numTracks; i++) {
-        tmpTracks.push(<Track loading="true" key={i} index={i} />)
+        tmpTracks.push(<Track loading="true" key={i} index={i+1} />)
     }
     const loadedBlocks = useRef({})
     const [tracks, setTracks] = useState(tmpTracks)
@@ -45,15 +45,15 @@ function TrackPane(props) {
         let doneWork = false
         if(!loadedBlocks.current[blockno]) {
             doneWork = true
-            const resp = await fetch('http://localhost:3000/gettracksspotify?'+new URLSearchParams({
+            const resp = await fetch(import.meta.env.VITE_API_URL+'/gettracksspotify?'+new URLSearchParams({
                 offset: offset,
                 limit: limit,
                 playlistId: playlistId
-            }))
+            }), {credentials: 'include'})
             const respJson = await resp.json()
             for(let i = offset; i < offset+respJson.length; i++) {
                 const track = respJson[i-offset]
-                newTracks[i] = <Track index={i} key={i} name={track.name} artist={track.artist} addedBy={track.addedBy} />
+                newTracks[i] = <Track spotifyUrl={track.spotifyUrl} index={i+1} key={i} name={track.name} artist={track.artist} addedBy={track.addedBy} />
                 // newTracks[i] = <Track name="LOADED" artist="LOADED" addedBy="LOADED" loaded="true" />
             }
             loadedBlocks.current[blockno] = true
@@ -74,9 +74,9 @@ function TrackPane(props) {
         }
     }
     
-    const lazyScroll = numTracks ? <LazyScroll items={tracks} onLazyScroll={onLazyScroll} minHeight="60svh" /> : <></>
+    const lazyScroll = numTracks ? <LazyScroll items={tracks} onLazyScroll={onLazyScroll} minHeight="67svh" /> : <></>
     return (
-        <div id="track-pane">
+        <div id="track-pane" style={props.style}>
             {lazyScroll}
         </div>
     )

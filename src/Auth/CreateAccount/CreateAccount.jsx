@@ -16,7 +16,8 @@ function CreateAccount() {
             body: JSON.stringify({
                 username: username,
                 password: password
-            })
+            }),
+            credentials: 'include'
         })
         const respJson = await resp.json()
         const loginToken = respJson['loginToken']

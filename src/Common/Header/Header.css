@@ -16,3 +16,30 @@
     border-bottom: 1px solid white;
     background-color: rgba(0,0,0,0.5)
 }
+
+@keyframes placeHolderShimmer{
+    0%{
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 0.3;
+    }
+}
+
+.loading-header {
+    animation-duration: 0.75s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: ease-in-out;
+    opacity: 0.3;
+    background-color: #1DB954;
+    height: 2.5rem;
+    padding: 0.25rem;
+    margin-bottom: 2rem;
+    width: 20%;
+    border-radius: 2rem;
+}

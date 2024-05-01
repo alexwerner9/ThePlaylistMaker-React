@@ -25,7 +25,8 @@ function CreatePlaylist(props) {
                 playlistName: playlistName,
                 isSpotifyUser: localStorage.getItem('isSpotifyUser') == 'true' ? true : false
             }),
-            redirect: 'follow'
+            redirect: 'follow',
+            credentials: 'include'
         })
         const respJson = await resp.json();
         if(respJson['error']) {

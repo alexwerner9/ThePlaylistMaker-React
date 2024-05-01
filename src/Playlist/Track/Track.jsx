@@ -2,7 +2,6 @@ import './Track.css'
 
 function Track(props) {
     function clickEvent() {
-        console.log(props.spotifyUrl)
         if(props.spotifyUrl) {
             window.open(props.spotifyUrl, '_blank').focus()
         } else {

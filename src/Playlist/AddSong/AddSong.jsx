@@ -21,7 +21,7 @@ function AddSong() {
                 setSongs([])
                 return;
             }
-            const resp = await fetch(import.meta.env.VITE_API_URL+'/search?name='+evt.target.value);
+            const resp = await fetch(import.meta.env.VITE_API_URL+'/search?name='+evt.target.value, {credentials: 'include'});
             const respJson = await resp.json()
             setSongs(respJson);
         }, 200)
@@ -43,7 +43,8 @@ function AddSong() {
                 spotifyUrl: song.spotifyUrl,
                 playlistId: playlistId,
                 addedBy: inputField.current.value
-            })
+            }),
+            credentials: 'include'
         })
         const respJson = await resp.json()
         navigate('/playlist/'+playlistId)

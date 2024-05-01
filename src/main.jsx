@@ -12,6 +12,7 @@ import Button from './Common/Button/Button.jsx'
 import './index.css'
 import { isLoggedIn } from './auth.js'
 import SpotifyCallback from './Auth/SpotifyCallback/SpotifyCallback.jsx'
+import RecentlyContributed from './Playlist/RecentlyContributed/RecentlyContributed.jsx'
 
 import {
   Navigate, BrowserRouter,
@@ -20,24 +21,31 @@ import {
 
 function ProtectedRoute(props) {
     if(!localStorage.getItem('loginToken')) {
-      return <Navigate to="/" replace />;
+      localStorage.setItem('loginRedirectHref', props.path)
+      return <Navigate to="/login" replace />;
     }
     return props.child;
 }
 
+function logoutOnClick() {
+    localStorage.clear()
+    window.location.href = "/"
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
-    <Button id="home-button" text="Home" clickEvent={() => {window.location.href="/"}} />
+    <button className="btn custom-button home" id="home-button" onClick={() => {window.location.href="/"}}><i className="fa fa-home"></i></button>
+    <button className="custom-button log-out" id="log-out" style={{display: isLoggedIn() ? "auto" : "none"}} onClick={logoutOnClick}>Log out</button>
     <BrowserRouter>
       <Routes>
         <Route index element={<App />}></Route>
         <Route path="login" element={<Login />} />
         <Route path="createaccount" element={<CreateAccount />} />
         <Route path="myaccount" element={
-          <ProtectedRoute child={<LoggedIn />} />
+          <ProtectedRoute path="myaccount" child={<LoggedIn />} />
         } />
         <Route path="createplaylist" element={
-          <ProtectedRoute child={<CreatePlaylist />} />
+          <ProtectedRoute path="createplaylist" child={<CreatePlaylist />} />
         } />
         <Route path="playlist/:playlistId" element={
           <Playlist />
@@ -46,8 +54,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <AddSong />
         } />
         <Route path="myplaylists" element={
-          <ProtectedRoute child={<MyPlaylists />} />
+          <ProtectedRoute path="myplaylists" child={<MyPlaylists />} />
         } />
+        <Route path="recentlycontributed" element={<RecentlyContributed />} />
         <Route path="spotifycallback" element={
           <SpotifyCallback />
         } />

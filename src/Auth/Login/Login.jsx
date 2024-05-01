@@ -27,13 +27,20 @@ function Login() {
             body: JSON.stringify({
                 username: username,
                 password: password
-            })
+            }),
+            credentials: 'include'
         })
         const respJson = await resp.json()
         const loginToken = respJson['loginToken']
         if(loginToken) {
             localStorage.setItem('loginToken', loginToken)
-            navigate('/')
+            const loginRedirectHref = localStorage.getItem('loginRedirectHref')
+            localStorage.removeItem('loginRedirectHref')
+            if(loginRedirectHref) {
+                window.location.href = loginRedirectHref
+            } else {
+                window.location.href = "/"
+            }
         } else {
             setAuthError("Authentication failed.")
         }
@@ -50,19 +57,6 @@ function Login() {
     }
 
     function spotifyLogin(evt) {
-        /*
-        we need to redirect to here. then we get a callback at callback with our code
-        from there we redirect to where we want
-            res.redirect('https://accounts.spotify.com/authorize?' +
-            querystring.stringify({
-                response_type: 'code',
-                client_id: CLIENT_ID,
-                scope: scope,
-                redirect_uri: `${PROTOCOL}://${HOSTNAME}/`,
-                state: state
-            })
-        );
-        */
         const scope = 'user-read-private playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative';
         const state = '1234567812345678';
         window.location.href = 'https://accounts.spotify.com/authorize?' + new URLSearchParams({
