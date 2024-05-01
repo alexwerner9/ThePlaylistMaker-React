@@ -25,7 +25,13 @@ function CreateAccount() {
             console.log(respJson.error)
         } else {
             localStorage.setItem("loginToken", loginToken)
-            navigate('/')
+            const loginRedirectHref = localStorage.getItem('loginRedirectHref')
+            localStorage.removeItem('loginRedirectHref')
+            if(loginRedirectHref) {
+                window.location.href = loginRedirectHref
+            } else {
+                window.location.href = "/"
+            }
         }
     }
 

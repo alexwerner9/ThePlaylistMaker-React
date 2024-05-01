@@ -1,5 +1,5 @@
 html {
-    font-size: max(min(3vw, 10px), 7px);
+    font-size: max(min(3vw, 9px), 7px);
 }
 html, body {
     margin: 0;
