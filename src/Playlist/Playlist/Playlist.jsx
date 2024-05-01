@@ -16,7 +16,7 @@ function Playlist() {
     const [tracks, setTracks] = useState([])
     const [isOwner, setIsOwner] = useState(false)
     const [playlistType, setPlaylistType] = useState('tpm')
-    const [copyButtonText, setCopyButtonText] = useState("Copy link")
+    const [copyButtonText, setCopyButtonText] = useState("Copy share link")
     const [playlistExists, setPlaylistExists] = useState(true)
     const [loaded, setLoaded] = useState(false)
     playlist.tracks = []
@@ -111,7 +111,7 @@ function Playlist() {
                 <TrackPane style={{marginBottom: "3rem"}} tracks={tracks} type={playlistType} playlistId={playlistId} playlist={playlist} />
                 <div className="rows">
                     <Button clickEvent={() => navigate('/addsong/'+playlistId)} text="Add a song" id="add-song" />
-                    <Button style={{width: "10rem"}} text={copyButtonText} clickEvent={copyLink} />
+                    <Button text={copyButtonText} clickEvent={copyLink} />
                     {changingButton}
                 </div>
                 
@@ -123,10 +123,10 @@ function Playlist() {
         <div className="columns">
             <Header text={playlist.playlistName ? playlist.playlistName : "-"} onMouseEnter={renamePlaylistEnter} onMouseLeave={renamePlaylistLeave} loading={!playlist.playlistName} />
             <div className="rows">
-                <div className="columns" id="left-panel">
+                <div className="columns" id="left-panel" style={{width: "10rem"}}>
                     <Button clickEvent={() => navigate('/addsong/'+playlistId)} text="Add a song" id="add-song" />
                     <Divider direction="row" />
-                    <Button style={{width: "15rem"}} text={copyButtonText} clickEvent={copyLink} />
+                    <Button text={copyButtonText} clickEvent={copyLink} />
                     {changingButton}
                 </div>
                 <TrackPane tracks={tracks} type={playlistType} playlistId={playlistId} playlist={playlist} />
