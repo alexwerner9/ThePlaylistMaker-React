@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../../Common/Header/Header.jsx'
 import Button from '../../Common/Button/Button.jsx'
 import CheckBox from '../../Common/CheckBox/CheckBox.jsx';
+import ListItem from '../../Common/ListItem/ListItem.jsx';
+import './AddSong.css'
 
 function AddSong() {
     const navigate = useNavigate()
@@ -47,21 +49,28 @@ function AddSong() {
             credentials: 'include'
         })
         const respJson = await resp.json()
+        localStorage.setItem('addedSongUser', inputField.current.value)
         navigate('/playlist/'+playlistId)
     }
+
+    const songItems = songs.map((elem, index) => {
+        return <ListItem key={elem.uri} 
+                id={index}
+                clickEvent={songClickEvent} 
+                text={elem.name + " - " + elem.artist}
+                style={{marginBottom: index == songs.length-1 ? "0rem" : "1rem"}} />
+        }
+    )
 
     return (
         <div className="columns">
             <Header text="Add a song" />
-            <input placeholder="Your name (Optional)" ref={inputField} />
+            <input placeholder="Your name (Optional)" defaultValue={localStorage.getItem('addedSongUser') ? localStorage.getItem('addedSongUser') : ""} ref={inputField}  />
             <input placeholder="Search for a song" onChange={searchUpdate} />
-            {songs.map((elem, index) => {
-                return <Button key={elem.uri} 
-                        id={index}
-                        clickEvent={songClickEvent} 
-                        text={elem.name + " - " + elem.artist} />
-                }
-            )}
+            <div id="songoptions-wrapper" className={songItems.length ? "" : "columns"}>
+                {songItems.length ? songItems : <div style={{padding: "5rem"}}>Tracks will appear here.</div>}
+            </div>
+            
         </div>
     )
 }

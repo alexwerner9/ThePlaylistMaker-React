@@ -6,7 +6,7 @@
     box-sizing: border-box;
     width: 100%;
     transition: 0.2s;
-    margin-bottom: 1rem
+    margin-bottom: 1rem;
 }
 
 .list-item:hover {

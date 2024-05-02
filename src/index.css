@@ -37,15 +37,15 @@ input {
     border-radius: .25rem;
     color: #1DB954;
     box-sizing: content-box;
-    font-size: 1.5rem;
     font-weight: 600;
-    width: 20rem;
+    width: 25rem;
     height: fit-content;
     text-align: center;
     padding: 0.5rem;
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
     margin-bottom: 2rem;
+    font-size: 2rem;
 }
 
 p {
@@ -135,4 +135,18 @@ p {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    font-size: 2rem;
+}
+
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
 }

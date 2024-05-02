@@ -3,6 +3,7 @@ import LazyScroll from '../../Common/LazyScroll/LazyScroll.jsx'
 import Track from '../Track/Track.jsx'
 import './TrackPane.css'
 import { useState, useRef } from 'react'
+import Button from '../../Common/Button/Button.jsx'
 
 function TrackPane(props) {
     const playlist = props.playlist
@@ -73,11 +74,28 @@ function TrackPane(props) {
             setTracks(newTracks)
         }
     }
-    
-    const lazyScroll = numTracks ? <LazyScroll items={tracks} onLazyScroll={onLazyScroll} minHeight="67svh" /> : <></>
+
+    const lazyScrollRef = useRef()
+    const [scrollDir, setScrollDir] = useState('down')
+    function scrollDown() {
+        const scroller = lazyScrollRef.current
+        scroller.scrollTo({top: scroller.scrollHeight, behavior: 'smooth'})
+        setScrollDir('up')
+    }
+    function scrollUp() {
+        const scroller = lazyScrollRef.current
+        scroller.scrollTo({top: 0, behavior: 'smooth'})
+        setScrollDir('down')
+    }
+
+    const downButton = <Button id="scroll-button" clickEvent={scrollDown} child={<i class="fa fa-arrow-down"></i>}/>
+    const upButton = <Button id="scroll-button" clickEvent={scrollUp} child={<i class="fa fa-arrow-up"></i>}/>
+    const scrollButton = scrollDir == 'down' ? downButton : upButton
+
     return (
         <div id="track-pane" style={props.style}>
-            {lazyScroll}
+            <LazyScroll forwardRef={lazyScrollRef} items={tracks} onLazyScroll={onLazyScroll} minHeight="67svh" />
+            {tracks.length > 50 ? scrollButton : <></>}
         </div>
     )
 }

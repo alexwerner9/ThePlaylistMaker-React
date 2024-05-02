@@ -25,7 +25,6 @@ function LazyScroll(props) {
     })
 
     function scrollHandler(evt) {
-        console.log("SCROLL")
         const paneHeight = evt.target.clientHeight
         const testItem = evt.target.children[1]
         const itemHeightTmp = window.getComputedStyle(testItem)
@@ -88,7 +87,7 @@ function LazyScroll(props) {
     })
 
     return (
-        <div className="lazy-scroll" style={{minHeight: props.minHeight, maxHeight: props.minHeight}} onScroll={scrollHandler}>
+        <div ref={props.forwardRef} className="lazy-scroll" style={{minHeight: props.minHeight, maxHeight: props.minHeight}} onScroll={scrollHandler}>
             <div id="lazy-scroll-bottom" style={data.bottomStyle} />
                 {data.loadedItems}
             <div id="lazy-scroll-top" style={data.topStyle} />

@@ -10,6 +10,7 @@
     margin: 0;
     background-color: rgb(30,30,30);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 16px 16px;
+    position: relative;
 }
 ol {
     padding: 0;
@@ -26,6 +27,12 @@ ol {
     background-color: rgb(30,30,30);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 16px 16px;
     border-top: 1px solid white;
+}
+
+#scroll-button {
+    position: absolute;
+    bottom: 2rem;
+    right: 5rem;
 }
 
 @media (orientation: portrait) {
