@@ -25,7 +25,9 @@ function AddSong() {
             }
             const resp = await fetch(import.meta.env.VITE_API_URL+'/search?name='+evt.target.value, {credentials: 'include'});
             const respJson = await resp.json()
-            setSongs(respJson);
+            if(respJson.length) {
+                setSongs(respJson);
+            }
         }, 200)
     }
 
@@ -57,8 +59,8 @@ function AddSong() {
         return <ListItem key={elem.uri} 
                 id={index}
                 clickEvent={songClickEvent} 
-                text={elem.name + " - " + elem.artist}
-                style={{marginBottom: index == songs.length-1 ? "0rem" : "1rem"}} />
+                text={index+1 + ". " + elem.name + " - " + elem.artist}
+                style={{marginBottom: index == songs.length-1 ? "0rem" : "1rem", textAlign: "left", fontSize: "1.8rem"}} />
         }
     )
 

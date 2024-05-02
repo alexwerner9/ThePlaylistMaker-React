@@ -1,5 +1,5 @@
 #songoptions-wrapper {
-    height: 40vh;
+    height: 65vh;
     width: 40vw;
     list-style: none;
     display: flex;
@@ -10,6 +10,7 @@
     max-height: 50vh;
     overflow: auto;
     margin-bottom: 1rem;
+    border-left: 1px solid white;
 }
 
 @media (orientation: portrait) {
