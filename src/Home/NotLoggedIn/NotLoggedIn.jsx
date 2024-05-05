@@ -14,6 +14,7 @@ function NotLoggedIn() {
     }
 
     const loginSpotifyOnClick = evt => {
+        localStorage.setItem('loginRedirectHref', '/')
         const scope = 'user-read-private playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative';
         const state = '1234567812345678';
         window.location.href = 'https://accounts.spotify.com/authorize?' + new URLSearchParams({

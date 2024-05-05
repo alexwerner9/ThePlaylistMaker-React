@@ -14,7 +14,7 @@
 
 @media (orientation: portrait) {
     #playlists-wrapper {
-        min-width: 50vw;
+        min-width: 75vw;
     }
 }
 

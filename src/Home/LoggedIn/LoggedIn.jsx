@@ -8,6 +8,7 @@ import Divider from '../../Common/Divider/Divider.jsx';
 
 function LoggedIn() {
     const navigate = useNavigate();
+    localStorage.removeItem('loginRedirectHref')
 
     let username = localStorage.getItem('username')
     const [text, setText] = useState(username ? "Hello " + username + "!" : "Hello")

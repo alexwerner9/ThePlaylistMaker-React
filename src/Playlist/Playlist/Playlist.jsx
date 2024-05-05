@@ -107,7 +107,7 @@ function Playlist() {
 
     let changingButton = isOwner ? <Button text="Delete" style={
         {
-            border: "2px solid red"
+            border: "1px solid red"
         }
     } clickEvent={() => {setDeleteModalOpen(true)}} /> : <Button text="Create your own" clickEvent={() => {navigate('/createplaylist')}} />
 
@@ -116,7 +116,7 @@ function Playlist() {
             <div className="columns">
                 <Header text="Are you sure you want to delete this playlist?" />
                 <div className="rows">
-                    <Button text="Delete" style={{border: "2px solid red"}} clickEvent={deletePlaylist} />
+                    <Button text="Delete" style={{border: "1px solid red"}} clickEvent={deletePlaylist} />
                     <Button text="Cancel" clickEvent={() => {setDeleteModalOpen(false)}} />
                 </div>
                 {playlistType == 'spotify' ? <p style={{fontSize: "1.3rem", color: "white", marginTop: "2rem", marginBottom: "0rem"}}>Note that this will not delete your playlist from Spotify.</p> : <></>}
@@ -147,9 +147,11 @@ function Playlist() {
                 {modal}
                 <Header text={playlist.playlistName ? playlist.playlistName : "-"} loading={!playlist.playlistName} />
                 <TrackPane style={{marginBottom: "3rem"}} tracks={tracks} type={playlistType} playlistId={playlistId} playlist={playlist} />
-                <div className="rows">
-                    <Button clickEvent={() => navigate('/addsong/'+playlistId)} text="Add a song" id="add-song" />
-                    <Button text={copyButtonText} clickEvent={copyLink} />
+                <div className="columns">
+                    <div className="rows">
+                        <Button clickEvent={() => navigate('/addsong/'+playlistId)} text="Add a song" id="add-song" />
+                        <Button text={copyButtonText} clickEvent={copyLink} />
+                    </div>
                     {changingButton}
                 </div>
                 
@@ -161,7 +163,7 @@ function Playlist() {
         <div className="columns">
             <Header text={playlist.playlistName ? playlist.playlistName : "-"} onMouseEnter={renamePlaylistEnter} onMouseLeave={renamePlaylistLeave} loading={!playlist.playlistName} />
             <div className="rows">
-                <div className="columns" id="left-panel" style={{width: "10rem"}}>
+                <div className="columns" id="left-panel" style={{minWidth: "20rem"}}>
                     {modal}
                     <Button clickEvent={() => navigate('/addsong/'+playlistId)} text="Add a song" id="add-song" />
                     <Divider direction="row" />
