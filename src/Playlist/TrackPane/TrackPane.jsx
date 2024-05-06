@@ -36,13 +36,14 @@ function TrackPane(props) {
     // initialize placeholders
     const loadedBlocks = useRef({})
     const tmpTracks = []
-    for(let i = 0; i < Math.floor(passedTracks.length / limit)*limit; i++) {
+    const numTracksAlreadyLoaded = Math.floor(passedTracks.length / limit)*limit
+    for(let i = 0; i < numTracksAlreadyLoaded; i++) {
         const track = passedTracks[i]
         tmpTracks.push(<Track spotifyUrl={track.spotifyUrl} index={i+1} key={i} name={track.name} artist={track.artist} addedBy={track.addedBy} />)
         const blockNo = Math.floor(i / 20)
         loadedBlocks.current[blockNo] = true;
     }
-    for(let i = 0; i < numTracks; i++) {
+    for(let i = numTracksAlreadyLoaded; i < numTracks; i++) {
         tmpTracks.push(<Track loading="true" key={i} index={i+1} />)
     }
     const [tracks, setTracks] = useState(tmpTracks)
