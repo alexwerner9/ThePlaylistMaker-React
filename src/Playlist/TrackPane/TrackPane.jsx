@@ -8,7 +8,8 @@ import Button from '../../Common/Button/Button.jsx'
 function TrackPane(props) {
     const playlist = props.playlist
     const numTracks = playlist.numTracks
-    if(!numTracks || !props.tracks.length) {
+    const passedTracks = props.tracks
+    if(!numTracks || !passedTracks) {
         return <div id="track-pane" className="rows" style={props.style}>Tracks will appear here.</div>
     }
     if(props.playlistType == 'tpm') {
@@ -31,17 +32,23 @@ function TrackPane(props) {
     }
     const playlistId = props.playlistId
 
+    const limit = 20
     // initialize placeholders
+    const loadedBlocks = useRef({})
     const tmpTracks = []
+    for(let i = 0; i < Math.floor(passedTracks.length / limit)*limit; i++) {
+        const track = passedTracks[i]
+        tmpTracks.push(<Track spotifyUrl={track.spotifyUrl} index={i+1} key={i} name={track.name} artist={track.artist} addedBy={track.addedBy} />)
+        const blockNo = Math.floor(i / 20)
+        loadedBlocks.current[blockNo] = true;
+    }
     for(let i = 0; i < numTracks; i++) {
         tmpTracks.push(<Track loading="true" key={i} index={i+1} />)
     }
-    const loadedBlocks = useRef({})
     const [tracks, setTracks] = useState(tmpTracks)
 
     // populate the block of tracks
     async function loadBlock(blockno, newTracks) {
-        const limit = 20
         const offset = blockno * limit
         let doneWork = false
         if(!loadedBlocks.current[blockno]) {
